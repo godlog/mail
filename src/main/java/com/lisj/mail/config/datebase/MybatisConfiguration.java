@@ -1,7 +1,6 @@
-package com.transfar.mail.config.datebase;
+package com.lisj.mail.config.datebase;
 
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.naming.factory.DataSourceLinkFactory;
 import org.aspectj.apache.bcel.util.ClassLoaderRepository;
 import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -14,7 +13,7 @@ import javax.sql.DataSource;
 
 /**
  * @author TF016519
- * @description: 必须要
+ * @description:
  * @date 2017/11/18 18:59
  * @version:1.0.0
  */

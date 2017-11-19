@@ -1,4 +1,4 @@
-package com.transfar.mail;
+package com.lisj.mail;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.ComponentScan;

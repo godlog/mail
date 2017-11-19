@@ -1,4 +1,4 @@
-package com.transfar.mail.config.datebase;
+package com.lisj.mail.config.datebase;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 

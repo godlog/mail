@@ -1,4 +1,4 @@
-package com.transfar.mail.config.datebase;
+package com.lisj.mail.config.datebase;
 
 /**
  * @author TF016519
@@ -11,7 +11,7 @@ public class DataBaseContextHolder {
     public enum  DataBaseType{
         MASTER,SLAVE
     }
-    //为什么用ThreadLocal
+    //为什么用ThreadLocal 当前线程的局部变量
     private static final  ThreadLocal<DataBaseType> contextHolder =new ThreadLocal<>();
 
 

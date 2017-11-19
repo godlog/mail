@@ -1,4 +1,4 @@
-package com.transfar.mail.entity;
+package com.lisj.mail.entity;
 
 /**
  * @description: 常量类

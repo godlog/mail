@@ -1,4 +1,4 @@
-package com.transfar.mail.config.datebase;
+package com.lisj.mail.config.datebase;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

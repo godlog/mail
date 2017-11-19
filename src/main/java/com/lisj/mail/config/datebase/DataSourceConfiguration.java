@@ -1,4 +1,4 @@
-package com.transfar.mail.config.datebase;
+package com.lisj.mail.config.datebase;
 
 
 import com.alibaba.druid.support.http.StatViewServlet;

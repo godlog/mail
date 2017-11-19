@@ -1,4 +1,4 @@
-package com.transfar.mail.utils;
+package com.lisj.mail.utils;
 
 
 import com.fasterxml.uuid.EthernetAddress;
