@@ -14,9 +14,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc //启用spring mvc
 @Configuration // 项目启动时启动当前配置类
 //扫描注解
-@ComponentScan ({"com.transfar.mail.*"})
+@ComponentScan ({"com.lisj.mail.*"})
 //扫描mapper
-@MapperScan(basePackages = "com.transfar.mail.mapper")
+@MapperScan(basePackages = "com.lisj.mail.mapper")
 public class MainConfig {
 
 }

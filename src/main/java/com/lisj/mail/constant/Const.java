@@ -1,4 +1,4 @@
-package com.lisj.mail.entity;
+package com.lisj.mail.constant;
 
 /**
  * @description: 常量类
