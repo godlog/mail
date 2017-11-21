@@ -1,6 +1,8 @@
 package com.lisj.mail.mapper;
 
 import com.lisj.mail.entity.MailSend;
+import org.apache.ibatis.annotations.Mapper;
+
 
 public interface MailSend1Mapper {
     int deleteByPrimaryKey(String sendId);
