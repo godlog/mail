@@ -1,5 +1,6 @@
 package com.lisj.mail.service;
 
+import com.lisj.mail.config.datebase.ReadOnlyConnection;
 import com.lisj.mail.entity.MailSend;
 import com.lisj.mail.enumeration.MailStatus;
 import com.lisj.mail.enumeration.RedisPriorityQueue;
@@ -13,6 +14,7 @@ import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -92,4 +94,17 @@ public class MailSendService {
         }
     }
 
+    /**
+     * @description: 只读
+     * @author 16519
+     * @date 2017/11/28 21:02
+     * @version 1.0
+     */
+    @ReadOnlyConnection
+    public List<MailSend> queryDraftList() {
+        List<MailSend> list = new  ArrayList<>();
+        list.addAll(mailSend2Mapper.queryDraftList());
+        list.addAll(mailSend1Mapper.queryDraftList());
+        return  list;
+    }
 }
