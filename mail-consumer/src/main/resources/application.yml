@@ -1,0 +1,111 @@
+server:
+  context-path: /mail-consumer
+  port: 8002
+  session:
+    timeout: 900
+
+## Spring配置:
+spring: 
+  http: 
+    encoding:
+      ##http字符集
+      charset: UTF-8
+  jackson:
+    ##json如果是这个格式的那么自动转换
+    date-format: yyyy-MM-dd HH:mm:ss
+    ##时区
+    time-zone: GMT+8
+    ##如果穿的参数有空的会自动过滤
+    default-property-inclusion: NON_NULL
+  ##redis集群
+  redis:
+    pool:
+      min-idle: 100
+      max-idle: 100
+      max-wait: -1
+      max-active: 1000
+    timeout: 6000
+    cluster:
+      max-redirects: 1000
+      nodes:
+        - 10.100.7.221:7000
+        - 10.100.7.221:7001
+        - 10.100.7.222:7002
+        - 10.100.7.222:7003
+        - 10.100.7.223:7004
+        - 10.100.7.223:7005
+
+  mail:
+    default-encoding: UTF-8
+    host: smtp.163.com   
+    port: 25
+    username: layoutlog@163.com
+    password: fzsmhmmiuwjkmrvl
+    properties: 
+      mail:
+        smtp: 
+          auth: true
+          timeout: 30000
+                
+druid: 
+    type: com.alibaba.druid.pool.DruidDataSource
+    master:
+        url: jdbc:mysql://192.168.142.131:3306/mail?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: root
+        ##初始化
+        initialSize: 5
+        minIdle: 1
+        #maxIdle: 10
+        maxActive: 100
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        filters: stat,wall,log4j
+        useGlobalDataSourceStat: true
+    slave: 
+        url: jdbc:mysql://192.168.142.130:3306/mail?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: root
+        initialSize: 5
+        minIdle: 1
+        #maxIdle: 10
+        maxActive: 100
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        filters: stat,wall,log4j
+        useGlobalDataSourceStat: true
+        
+mybatis:
+    type-aliases-package: com.lisj.mail
+    mapper-locations: classpath:com/lisj/mail/mapping/*.xml
+
+logging:
+    level:
+        tk.mybatis: TRACE  
+        
+        
+pagehelper: 
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql      
+      
+      
+     
+    
