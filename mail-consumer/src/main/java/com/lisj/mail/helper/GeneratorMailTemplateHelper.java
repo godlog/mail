@@ -31,8 +31,8 @@ public class GeneratorMailTemplateHelper {
         Context context =new Context();
         context.setLocale(Locale.CHINA);
         context.setVariables(mailData.getParam());
-        String templateLoaciton=mailData.getTemplateName();
-        String content = templateEngine.process(templateLoaciton,context);
+        String templateLocation=mailData.getTemplateName();
+        String content = templateEngine.process(templateLocation,context);
 
         mailData.setContent(content);
 

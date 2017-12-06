@@ -66,12 +66,25 @@ public class MailSendService {
 
             //3.修改数据库状态,并使用版本号(乐观更新)
             int hashCode = ms.getSendId().hashCode();
+            int ret;
             if(hashCode % 2 == 0){
-                mailSend1Mapper.updateByPrimaryKeyAndVersion(ms);
+                ret = mailSend2Mapper.updateByPrimaryKeyAndVersion(ms);
             }else{
-                mailSend2Mapper.updateByPrimaryKeyAndVersion(ms);
+                ret = mailSend1Mapper.updateByPrimaryKeyAndVersion(ms);
             }
-            LOGGER.info("发送邮件成功,id{},userId:{}",ms.getSendId(),ms.getSendUserId());
+
+            if(ret == 0){
+                ms.setSendStatus(MailStatus.DRAFT.getCode());
+                if(hashCode % 2 == 0){
+                    mailSend2Mapper.updateByPrimaryKey(ms);
+                }else{
+                    mailSend1Mapper.updateByPrimaryKey(ms);
+                }
+                LOGGER.info("发送邮件失败,版本号冲突,id{},userId:{}",ms.getSendId(),ms.getSendUserId());
+            }else if(ret == 1){
+                LOGGER.info("发送邮件成功,id{},userId:{}",ms.getSendId(),ms.getSendUserId());
+            }
+
         } catch (MessagingException e) {
 
         } catch (Exception e){
@@ -86,9 +99,9 @@ public class MailSendService {
 
             int hashCode = ms.getSendId().hashCode();
             if(hashCode % 2 == 0){
-                mailSend1Mapper.updateByPrimaryKeyAndVersion(ms);
-            }else{
                 mailSend2Mapper.updateByPrimaryKeyAndVersion(ms);
+            }else{
+                mailSend1Mapper.updateByPrimaryKeyAndVersion(ms);
             }
 
             throw new RuntimeException();

@@ -21,8 +21,18 @@ public class RetryTask {
     private static Logger LOGGER = LoggerFactory.getLogger(RetryTask.class);
     @Autowired
     private MailSendService mailSendService;
+
+    /**
+     * @description: 重发失败的邮件
+     * @author 16519
+     * @date 2017/11/28 21:15
+     * @version 1.0
+     */
     @Scheduled(initialDelay = 5000,fixedDelay = 10000)
     public void retry(){
         List<MailSend> list= mailSendService.queryDraftList();
+        for (MailSend ms: list) {
+            mailSendService.sendRedis(ms);
+        }
     }
 }
